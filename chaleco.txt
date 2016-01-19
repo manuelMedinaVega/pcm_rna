@@ -1,0 +1,33 @@
+Red Neuronal
+(Class NeuralNet)
+Esta clase es la primera clase en la estructura.
+Es una clase abstracta que extiende de java.lang.Object
+No puede ser instanciada)
+No tiene Constructores	boolean displayNow ()
+	Indica, si la red debe establecerse o no, dependiendo de su paso de visualización. Es cierto, si debe establecerse la red. False en caso contrario.
+
+	finishedLearning boolean ()
+	Indica que la red ha terminado el aprendizaje. Es cierto, si el proceso de aprendizaje ha terminado. Falso en caso contrario.
+	String getElapsedTime ()	Devuelve el tiempo de aprendizaje transcurrido de una red neuronal.
+
+	int getLearningCycle ()
+
+
+
+
+
+
+	Devuelve el ciclo de aprendizaje actual de una red neuronal.
+
+	double getLearningRate ()	Devuelve la tasa de aprendizaje actual de una red neuronal.
+
+	int getMaxLearningCycles ()	Devuelve el número de ciclos máximos de aprendizaje de una red neuronal.
+
+	void resetTime ()	Restablece el tiempo de aprendizaje de la red.
+
+	void setDisplayStep ( int displayStep )	Establece un valor que indica el intervalo para mostrar la red.
+
+	void setLearningRate ( double learningRate )	Establece la tasa de aprendizaje de una red neuronal.
+
+	void setMaxLearningCycles ( int maxLearningCycles )	Establece el número de ciclos de aprendizaje que la red llevará a cabo.
+Si es -1, la red no tiene ciclo máximo.

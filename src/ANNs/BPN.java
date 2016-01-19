@@ -78,13 +78,13 @@ public class BPN {
 			System.out.println( "OK" );
 
 			System.out.print( "Creating neuron layers ..." );
-			bpn.addNeuronLayer( 33 );	// input layer for towns (must be 2, see pattern file)
-			bpn.addNeuronLayer( 34 );	// hidden layer (number of neurons may vary)
-			//bpn.addNeuronLayer( 14 );				// (more hidden layers are possible)
-			bpn.addNeuronLayer( 3);	// output layer
+			bpn.addNeuronLayer( 2 );	// input layer for towns (must be 2, see pattern file)
+			bpn.addNeuronLayer( 3 );	// hidden layer (number of neurons may vary)
+			//bpn.addNeuronLayer(  );				// (more hidden layers are possible)
+			bpn.addNeuronLayer( 1 );	// output layer
 			System.out.println( "OK" );
 
-			System.out.print( "Connecting neuron layers ..." );
+			System.out.print( "Connecting neuron layers ...\n" );
 			bpn.connectLayers();
 			System.out.println( "OK" );
 
@@ -94,7 +94,7 @@ public class BPN {
 			System.out.println( "weights: " + bpn.getNumberOfWeights() + "\n\r" );
 
 			System.out.print( "Reading pattern file ..." );
-			bpn.readPatternFile( "metodologias.pat" );
+			bpn.readPatternFile( "xor.pat" );
 			System.out.println( "OK - patterns: " + bpn.getNumberOfPatterns() );
 
 			// some optional method calls
@@ -112,33 +112,9 @@ public class BPN {
 			}
 			output();
 			System.out.println( "\n\rFINISHED." );
-                        //---------prueba de red neuronal------------------------------------------------------------//
-                        //System.out.print( "Reading pattern file ..." );
-			//bpn.readPatternFile( "townsss.pat" );//cambio de patrones
-			//System.out.println( "OK - patterns: " + bpn.getNumberOfPatterns() );
                         
-                        String P1=bpn.recall("100010011001010000011001000000000"); //obtengo respuesta de la red
+                        String P1=bpn.recall("10"); //obtengo respuesta de la red
                         System.out.println( P1 );
-                        if(P1.equals("100")) System.out.println("Modelo en cascada");
-                        if(P1.equals("010")) System.out.println("RUP");
-                        if(P1.equals("001")) System.out.println("SCRUM");
-                        /*
-                        P1=bpn.recall("Brasilia00");
-                        System.out.println( P1 );
-                        
-                        P1=bpn.recall("Brussels00");
-                        System.out.println( P1 );
-                        
-                        P1=bpn.recall("Helsinki00");
-                        System.out.println( P1 );
-                        /*P1=bpn.getOutputPattern(1); //obtengo respuesta de la red
-                        System.out.println( P1 );
-                        
-                        P1=bpn.getOutputPattern(2); //obtengo respuesta de la red
-                        System.out.println( P1 );
-                        
-                        P1=bpn.getOutputPattern(3); //obtengo respuesta de la red
-                        System.out.println( P1 );*/
                         
 		}
 	}

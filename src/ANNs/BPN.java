@@ -112,6 +112,8 @@ public class BPN {
 			}
 			output();
 			System.out.println( "\n\rFINISHED." );
+                        System.out.println("Los pesos son:");
+                        bpn.mostrarPesos();
                         
                         String P1=bpn.recall("10"); //obtengo respuesta de la red
                         System.out.println( P1 );

@@ -31,7 +31,14 @@ public class BackpropagationNet extends NeuralNet
     {
         neuronLayerVector.addElement(new NeuronLayer(i * multiplier));
     }
-
+    
+    void mostrarPesos(){
+        for(int j = 0; j < weightMatrixArray.length; j++)
+        {
+            weightMatrixArray[j].mostrarPesos();
+        }
+    }
+    
     void connectLayers()
     {
         weightMatrixArray = new WeightMatrix[neuronLayerVector.size() - 1];
@@ -45,6 +52,7 @@ public class BackpropagationNet extends NeuralNet
         {
             weightMatrixArray[j] = new WeightMatrix(neuronLayerArray[j].size(), neuronLayerArray[j + 1].size(), true);
             weightMatrixArray[j].init();
+            weightMatrixArray[j].mostrarPesos();
         }
 
         lastLayer = neuronLayerArray.length - 1;

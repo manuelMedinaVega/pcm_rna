@@ -24,14 +24,23 @@ public class WeightMatrix
     {
         for(int i = 0; i < weight.length; i++)
         {
-            for(int j = 0; j < weight[0].length; j++){
+            for(int j = 0; j < weight[0].length; j++)
                 weight[i][j] = (float)Math.random() * 2.0F - 1.0F;
+        }
+
+        for(int k = 0; k < weight[0].length; k++)
+            bias[k] = (float)Math.random() * 2.0F - 1.0F;
+    }
+    
+    void mostrarPesos(){
+        for(int i = 0; i < weight.length; i++)
+        {
+            for(int j = 0; j < weight[0].length; j++){
                 System.out.println("valor de weight["+i+"]["+j+"]: "+weight[i][j]);
             }
         }
 
         for(int k = 0; k < weight[0].length; k++){
-            bias[k] = (float)Math.random() * 2.0F - 1.0F;
             System.out.println("valor de bias["+k+"]: "+bias[k]);
         }
     }

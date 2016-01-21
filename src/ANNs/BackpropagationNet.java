@@ -6,15 +6,21 @@
 package ANNs;
 
 
+import controladores.ControladorPesos;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BackpropagationNet extends NeuralNet
 {
-
+    private ControladorPesos controlador; 
+    
     public BackpropagationNet()
     {
+        controlador=new ControladorPesos();
         super.learningCycle = 0;
         super.maxLearningCycles = -1;
         minimumError = 0.00050000000000000001D;
@@ -39,10 +45,59 @@ public class BackpropagationNet extends NeuralNet
         }
     }
     
+    void mostrarAtributosNeuronas(){
+        for(int j=0;j<neuronLayerArray.length;j++){
+            System.out.println("Neuronas de la capa: "+j);
+            neuronLayerArray[j].mostrarAtributos();
+        }
+    }
+    
+    void guardarPesos(){
+        for(int i=0;i<weightMatrixArray.length;i++){
+            for(int j = 0; j < weightMatrixArray[i].weight.length; j++)
+            {
+                for(int k = 0; k < weightMatrixArray[i].weight[0].length; k++){
+                    int capa_entrada=i;
+                    int capa_salida=i+1;
+                    int neurona_entrada=j;
+                    int neurona_salida=k;
+                    float valor=weightMatrixArray[i].weight[j][k];
+                    try {
+                        controlador.insertarPesos(valor,capa_entrada,capa_salida,neurona_entrada,neurona_salida);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(BackpropagationNet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            for(int l = 0; l < weightMatrixArray[i].weight[0].length; l++){
+                int capa=i+1;
+                int neurona=l;
+                float valor=weightMatrixArray[i].bias[l];
+                try {
+                    controlador.insertarPesos(valor,capa,neurona);
+                } catch (SQLException ex) {
+                    Logger.getLogger(BackpropagationNet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }  
+    }
+    
+    void guardarNeuronas(){
+        for(int i=0;i<neuronLayerArray.length;i++){
+            for(int j = 0; j < neuronLayerArray[i].neuron.length; j++){
+                try {   
+                    controlador.insertarNeuronas(i,j);
+                } catch (SQLException ex) {
+                    Logger.getLogger(BackpropagationNet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
     void connectLayers()
     {
-        weightMatrixArray = new WeightMatrix[neuronLayerVector.size() - 1];
-        neuronLayerArray = new NeuronLayer[neuronLayerVector.size()];
+        weightMatrixArray = new WeightMatrix[neuronLayerVector.size() - 1]; //arreglo de matriz de pesos
+        neuronLayerArray = new NeuronLayer[neuronLayerVector.size()]; //arreglo de capas de neuronas
         int i = 0;
         for(Enumeration enumeration = neuronLayerVector.elements(); enumeration.hasMoreElements();)
             neuronLayerArray[i++] = (NeuronLayer)enumeration.nextElement();
@@ -52,7 +107,7 @@ public class BackpropagationNet extends NeuralNet
         {
             weightMatrixArray[j] = new WeightMatrix(neuronLayerArray[j].size(), neuronLayerArray[j + 1].size(), true);
             weightMatrixArray[j].init();
-            weightMatrixArray[j].mostrarPesos();
+            //weightMatrixArray[j].mostrarPesos();
         }
 
         lastLayer = neuronLayerArray.length - 1;
@@ -165,7 +220,7 @@ public class BackpropagationNet extends NeuralNet
         if(error > minimumError && (super.learningCycle < super.maxLearningCycles || super.maxLearningCycles == -1))
         {
             super.learningCycle++;
-            for(int i = 0; i <= lastPattern; i++)
+            for(int i = 0; i <= lastPattern; i++) //lastPattern=3
             {
                 neuronLayerArray[0].setInput(inputPatternArray[i]);
                 for(int j = 1; j <= lastLayer; j++)
@@ -216,12 +271,16 @@ public class BackpropagationNet extends NeuralNet
         af = neuronLayerArray[lastLayer].getOutput();
         String s2;
         String s1 = s2 = "";
+        System.out.println("af: "+af[0]);
+        System.out.println("accuracy: "+accuracy);
         for(int j = 0; j < af.length; j++)
             s1 += (double)af[j] >= accuracy ? "1" : "0";
 
+        System.out.println("s1: "+s1);
         for(int k = 0; k < s1.length(); k += multiplier)
             s2 += getAsciiValue(s1.substring(k, k + multiplier));
-
+        
+        System.out.println("s2: "+s2);
         return s2;
     }
 
@@ -282,18 +341,18 @@ public class BackpropagationNet extends NeuralNet
             DataInputStream datainputstream = new DataInputStream(new FileInputStream(s));
             try
             {
-                int i = Integer.parseInt(datainputstream.readLine());
-                int j = Integer.parseInt(datainputstream.readLine());
+                int i = Integer.parseInt(datainputstream.readLine()); //4, numero de regla
+                int j = Integer.parseInt(datainputstream.readLine());//2, numero de neuronas de entrada
                 if(j * multiplier != neuronLayerArray[0].size())
                     error(106);
-                int k = Integer.parseInt(datainputstream.readLine());
+                int k = Integer.parseInt(datainputstream.readLine()); //1, numero de neuronas de salida
                 if(k * multiplier != neuronLayerArray[lastLayer].size())
                     error(107);
                 inputPatternArray = new Pattern[i];
                 targetPatternArray = new Pattern[i];
                 outputPatternArray = new String[i];
-                lastPattern = inputPatternArray.length - 1;
-                layerOutputError = new float[lastPattern + 1][neuronLayerArray[lastLayer].size()];
+                lastPattern = inputPatternArray.length - 1; //4-1=3
+                layerOutputError = new float[lastPattern + 1][neuronLayerArray[lastLayer].size()];//[4][1]
                 for(int l = 0; l < i; l++)
                 {
                     String s1 = datainputstream.readLine();

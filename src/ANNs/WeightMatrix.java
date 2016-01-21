@@ -10,6 +10,9 @@ public class WeightMatrix
 
     public WeightMatrix(int i, int j, boolean flag)
     {
+        /*Recibe como parametro i que es igual al numero de neuronas en la capa n
+        y j que es igual al numero de neuronas en la capa n+1, un boolean true
+        */
         weight = new float[i][j];
         bias = new float[j];
         for(int k = 0; k < j; k++)
@@ -18,13 +21,14 @@ public class WeightMatrix
         size = i * j;
         if(flag)
             size += j;
+        
     }
 
     void init()
     {
-        for(int i = 0; i < weight.length; i++)
+        for(int i = 0; i < weight.length; i++) //weight.lenght = 2 
         {
-            for(int j = 0; j < weight[0].length; j++)
+            for(int j = 0; j < weight[0].length; j++)//weight[0].length = 3
                 weight[i][j] = (float)Math.random() * 2.0F - 1.0F;
         }
 
@@ -128,8 +132,11 @@ public class WeightMatrix
 
     }
 
-    float[] getInputWeights(int i)
+    float[] getInputWeights(int i) 
     {
+        /*Esta funcion retorna un arreglo con los pesos que ingresas a la neurona i de la capa a la que pertenece,
+        los pesos que ingresan a la neurona vendran de las neuronas de la capa anterior a esta,
+        ademas del bias*/
         float af[] = new float[weight.length + 1];
         for(int j = 0; j < weight.length; j++)
             af[j] = weight[j][i];

@@ -3,6 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/WeightMatrix.java</file>
+            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/NeuronLayer.java</file>
+            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/BPN.java</file>
+            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/Pattern.java</file>
+            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/NeuralNet.java</file>
+            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/Neuron.java</file>
+            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/BackpropagationNet.java</file>
+        </group>
     </open-files>
 </project-private>

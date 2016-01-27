@@ -246,16 +246,16 @@ public class BackpropagationNet extends NeuralNet
         af = neuronLayerArray[lastLayer].getOutput();
         String s2;
         String s1 = s2 = "";
-        System.out.println("af: "+af[0]);
-        System.out.println("accuracy: "+accuracy);
+        //System.out.println("af: "+af[0]);
+        //System.out.println("accuracy: "+accuracy);
         for(int j = 0; j < af.length; j++)
             s1 += (double)af[j] >= accuracy ? "1" : "0";
 
-        System.out.println("s1: "+s1);
+        //System.out.println("s1: "+s1);
         for(int k = 0; k < s1.length(); k += multiplier)
             s2 += getAsciiValue(s1.substring(k, k + multiplier));
         
-        System.out.println("s2: "+s2);
+        //System.out.println("s2: "+s2);
         return s2;
     }
 

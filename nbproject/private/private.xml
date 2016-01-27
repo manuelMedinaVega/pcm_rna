@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/WeightMatrix.java</file>
-            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/NeuronLayer.java</file>
-            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/BPN.java</file>
-            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/Pattern.java</file>
-            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/NeuralNet.java</file>
-            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/Neuron.java</file>
-            <file>file:/C:/virtualhost/pcm_rna/src/ANNs/BackpropagationNet.java</file>
-=======
-            <file>file:/C:/virtualhost/RNA_Meto/src/ANNs/BackpropagationNet.java</file>
-            <file>file:/C:/virtualhost/RNA_Meto/src/ANNs/WeightMatrix.java</file>
-            <file>file:/C:/virtualhost/RNA_Meto/src/ANNs/Neuron.java</file>
-            <file>file:/C:/virtualhost/RNA_Meto/src/ANNs/BPN.java</file>
-            <file>file:/C:/virtualhost/RNA_Meto/src/ANNs/NeuronLayer.java</file>
->>>>>>> e8fd191fa76ae097412ab911dde6b5e42d44e741
-        </group>
+        <group/>
     </open-files>
 </project-private>

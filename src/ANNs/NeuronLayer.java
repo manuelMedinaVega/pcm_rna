@@ -7,9 +7,13 @@ package ANNs;
 
 public class NeuronLayer
 {
-
+    /*La clase NeuronLayer(capa de neuronas) recibe el numero de neuronas que habra
+    en esa capa, y crea un arreglo (neuron) de objetos de la clase Neuron, el arreglo
+    sera de tamanio igual al numero de neuronas que se le pasa como parametro*/
     NeuronLayer(int i)
     {
+        /*cada neurona tiene tres atributos input, output y outputerror, los cuales
+        al crear al objeto se inicializan con cero.*/
         neuron = new Neuron[i];
         for(int j = 0; j < i; j++)
             neuron[j] = new Neuron();
@@ -18,6 +22,8 @@ public class NeuronLayer
 
     void setInput(Pattern pattern)
     {
+        /*Este metodo asigna a los atributos de las neuronas de la capa de entrada,
+        (input, output, outputerror) el valor de los patrones de entrada*/
         for(int i = 0; i < neuron.length; i++)
             neuron[i].init(pattern.getValue(i));
 
@@ -36,6 +42,10 @@ public class NeuronLayer
 
     void computeInput(NeuronLayer neuronlayer, WeightMatrix weightmatrix)
     {
+        /*Este metodo calcula los valores del atributo input de cada neurona en una capa,
+        para eso se llama al metodo computeInput de la clase Neuron la cual recibe, los
+        valores de los output de las neuronas de la capa anterior, y los pesos que vienen 
+        de esas neuronas hacia las neuronas de esta capa*/
         for(int i = 0; i < neuron.length; i++)
             neuron[i].computeInput(neuronlayer.getOutput(), weightmatrix.getInputWeights(i));
 
@@ -43,6 +53,7 @@ public class NeuronLayer
 
     void computeOutput()
     {
+        /*Este metodo calcula los valores del atributo output de cada neurona en una capa*/
         for(int i = 0; i < neuron.length; i++)
             neuron[i].activateSigmoid();
 
@@ -50,6 +61,7 @@ public class NeuronLayer
 
     void computeLayerError(Pattern pattern)
     {
+        /*calcula el valor del atributo outputerror para las neuronas de la capa de salida*/
         for(int i = 0; i < neuron.length; i++)
             neuron[i].computeOutputError(pattern.getValue(i));
 
@@ -64,6 +76,7 @@ public class NeuronLayer
 
     float[] getOutput()
     {
+        /*Esta funcion retorna un arreglo con los valores del atributo output de cada neurona*/
         float af[] = new float[neuron.length];
         for(int i = 0; i < neuron.length; i++)
             af[i] = neuron[i].getOutput();
@@ -83,6 +96,14 @@ public class NeuronLayer
     int size()
     {
         return neuron.length;
+    }
+    
+    void mostrarAtributos(){
+        for(int i = 0; i < neuron.length; i++){
+            System.out.println("Neurona input: "+neuron[i].getInput());
+            System.out.println("Neurona output: "+neuron[i].getOutput());
+            System.out.println("Neurona outputerror: "+neuron[i].getOutputError());
+        }        
     }
 
     Neuron neuron[];

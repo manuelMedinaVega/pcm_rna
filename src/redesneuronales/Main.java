@@ -5,6 +5,7 @@
 
 package redesneuronales;
 import ANNs.*;
+import basedatos.BDConector;
 
 /**
  *
@@ -18,10 +19,13 @@ public class Main {
     public static void main(String[] args) 
     {
         // TODO code application logic here
-        BPN bp1=new BPN();
-        String[] argss=new String[3];
-        argss[0]="1";
-        bp1.main(argss);
+        if(BDConector.conectar_bd()){
+            BPN bp1=new BPN();
+            String[] argss=new String[3];
+            argss[0]="1";
+            bp1.main(argss);
+        }
+        
         
     }
 

@@ -94,7 +94,7 @@ public class BPN {
 			System.out.println( "weights: " + bpn.getNumberOfWeights() + "\n\r" );
 
 			System.out.print( "Reading pattern file ..." );
-			bpn.readPatternFile( "capacidad_consumo.pat" );
+			bpn.readPatternFile( "reglas.pat" );
 			System.out.println( "OK - patterns: " + bpn.getNumberOfPatterns() );
 
 			// some optional method calls
@@ -116,7 +116,7 @@ public class BPN {
                         bpn.mostrarPesos();
                         bpn.guardarPesos();
                         
-                        String P1=bpn.recall("1000000000100000000000000000"); //obtengo respuesta de la red
+                        String P1=bpn.recall("1000000000001000000000000010"); //obtengo respuesta de la red
                         System.out.println( P1 );
                         
 		}

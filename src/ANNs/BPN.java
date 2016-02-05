@@ -79,7 +79,7 @@ public class BPN {
 
 			System.out.print( "Creating neuron layers ..." );
 			bpn.addNeuronLayer( 28 );	// input layer for towns (must be 2, see pattern file)
-			bpn.addNeuronLayer( 17 );	// hidden layer (number of neurons may vary)
+			bpn.addNeuronLayer( 21 );	// hidden layer (number of neurons may vary)
 			//bpn.addNeuronLayer(  );       // (more hidden layers are possible)
 			bpn.addNeuronLayer( 5 );	// output layer
 			System.out.println( "OK" );
@@ -117,6 +117,7 @@ public class BPN {
                         bpn.guardarPesos();
                         
                         String P1=bpn.recall("0000100000010000000000000001"); //obtengo respuesta de la red
+                                             
                         System.out.println( P1 );
                         
 		}

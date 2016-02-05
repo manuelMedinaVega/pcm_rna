@@ -116,7 +116,7 @@ public class BPN {
                         bpn.mostrarPesos();
                         bpn.guardarPesos();
                         
-                        String P1=bpn.recall("1000000000001000000000000010"); //obtengo respuesta de la red
+                        String P1=bpn.recall("0000100000010000000000000001"); //obtengo respuesta de la red
                         System.out.println( P1 );
                         
 		}
